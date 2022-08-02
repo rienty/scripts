@@ -12,17 +12,22 @@ sudo pkill wpa_supplicant && sudo iw dev wlan0 disconnect
 case "$sel" in
     oneplus)
            sudo pkill wpa_supplicant 
-           sudo wpa_supplicant -i wlan0 -c ~/scripts/oneplus.conf -B ;;
+           sudo wpa_supplicant -i wlan0 -c ~/scripts/oneplus.conf -B 
+		   v2ray -c ~/scripts/config.json & ;;
        home)
 	   sudo pkill wpa_supplicant
-	   sudo wpa_supplicant -i wlan0 -c ~/scripts/home.conf -B ;;
+	   sudo wpa_supplicant -i wlan0 -c ~/scripts/home.conf -B 
+	   v2ray -c ~/scripts/config.json & ;;
        cnu)
 	   sudo iw dev wlan0 disconnect
-	   sudo iw dev wlan0 connect CNU ;;
+	   sudo iw dev wlan0 connect CNU
+	   v2ray -c ~/scripts/config.json & ;;
     wpa-off)
-	   sudo pkill wpa_supplicant ;;
+	   sudo pkill wpa_supplicant
+	   sudo pkill v2ray ;;
     iw-off)
-	   sudo iw dev wlan0 disconnect ;;
+	   sudo iw dev wlan0 disconnect
+	   sudo pkill v2ray ;;
 esac
 
 exit 0
