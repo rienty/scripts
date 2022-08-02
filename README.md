@@ -14,11 +14,8 @@
 
  ln -sf .config/myzsh/.zshrc .zshrc  ..xinitrc .xinitrc ..gitconfig .gitconfig 
 
-## code 
 
-[google](www.google.com) 
 
-we can findo out a good setting in the first thing that come  
 
 
 
