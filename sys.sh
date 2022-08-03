@@ -35,6 +35,6 @@ print_cpuinfo(){
    echo -e "${hzg}GHz $tep"
 }
 
-echo -e " | $(print_mem) | $(print_cpuinfo) | "
+echo -e " $(print_date) $(print_bat) "
 
 exit 0

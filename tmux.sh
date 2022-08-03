@@ -59,6 +59,16 @@ print_cpuinfo(){
       echo -e "${zg}GHz +$tep$co"
 }
 
-echo -e " | $(print_mem) | $(print_cpuinfo) | $(print_bat) | $(print_date) | "
+print_wifi() {
+	wifi=$(iw dev wlan0 info | grep ssid | awk '{print $2}')
+	if [ -z "$wifi" ]
+	then
+		echo -e "H"
+	else
+		echo -e "W"
+	fi
+}
+
+echo -e " $(print_wifi)  $(print_date)  $(print_bat) "
 
 exit 0

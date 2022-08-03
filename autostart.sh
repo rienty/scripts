@@ -2,7 +2,7 @@
 
 /bin/bash ~/scripts/dwm-status.sh &
 
-feh --bg-fill ~/scripts/wallpapers/aenami_3.jpg
+feh --bg-fill ~/scripts/wallpapers/world.jpg
 
 sudo cpupower frequency-set --governor conservative
 
@@ -17,6 +17,6 @@ clipmenud &
 
 fcitx5 &
 
-sleep 5
+sleep 2
 
 xmodmap ~/.config/Xmodmap
