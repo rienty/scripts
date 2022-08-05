@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cmd=$(echo -e "poweroff\nreboot\nlow-energy\nmed-energy\nhig-energy" | dmenu -i -p "Execute:" -l 20 )
+cmd=$(echo -e "poweroff\nreboot\nlow-energy\nmed-energy\nhig-energy" | dmenu -i -p "Execute" -x 200 -y 1020 -z 2125 -l 20 )
 
 if [ -z "$cmd" ]
 then

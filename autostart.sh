@@ -13,10 +13,7 @@ xss-lock --transfer-sleep-lock -- i3lock -c 000000 --nofork &
 xautolock -time 10 -locker "i3lock -c 000000" &
 
 clipmenud &
-#pulseaudio &
+pulseaudio &
 
-fcitx5 &
 
-sleep 2
 
-xmodmap ~/.config/Xmodmap
