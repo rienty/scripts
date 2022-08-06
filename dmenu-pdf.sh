@@ -3,9 +3,21 @@
 #windows=$(wmctrl -xl | tr -s '[:blank:]' | cut -d ' ' -f 5- | sort | uniq)
 
 #target=$(echo "$windows" | grep -E ".*_.*.pdf" | grep -m1 "")
+#lu="^0"
+#
+#for ((i = 1; i < 10; i++)); do	
+#	
+#	mu=$(bspc query -N -d i)
+#	if [[ -z "$mu" ]]; then
+#		lu="${lu}\n"
+#	fi
+#done
+#
+#nu=$(echo -e "$lu" | dmenu -p "which desktop?" -l 10 -i -x 200 -y 800 -z 2100)
 
+#nu=$(echo -e "^2\n^3\n^4\n^5\n^6\n^7\n^8\n^9" | dmenu -p "Which desktop?" -l 20 -i -x 200 -y 800 -z 2100)
 
-nu=$(echo -e "^3\n^4\n^5\n^6\n^7\n^8" | dmenu -p "Which desktop?" -l 20 -i -x 200 -y 800 -z 2100)
+nu="^3"
 
 if [ -z "$nu" ]
 then

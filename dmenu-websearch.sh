@@ -7,13 +7,14 @@ exit_justify () {
 }
 
 #web="$(echo -e "qutebrowser\nfirefox" | dmenu -p "Which Browser?" -l 20 -i)"
-
 #exit_justify "$web"
+
 web="qutebrowser"
 
-nu=$(echo -e "^3\n^4\n^5\n^6\n^7\n^8" | dmenu -p "Which desktop?" -l 20 -i -x 200 -y 800 -z 2100)
+#nu=$(echo -e "^3\n^4\n^5\n^6\n^7\n^8" | dmenu -p "Which desktop?" -l 20 -i -x 200 -y 800 -z 2100)
+#exit_justify "$nu"
 
-exit_justify "$nu"
+nu="^4"
 
 engine="$(echo -e "Google\nArXiv\nWiki\nScihub\nZbmath\nOverflow\nGithub\nYoutube\nCNU\nURL" | dmenu -p "Which Engine?" -l 20 -i -x 200 -y 800 -z 2100)"
 

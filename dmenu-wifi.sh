@@ -8,6 +8,7 @@ then
 fi
 
 sudo pkill wpa_supplicant && sudo iw dev wlan0 disconnect
+sudo pkill v2ray 
 
 case "$sel" in
     oneplus)
@@ -21,7 +22,9 @@ case "$sel" in
        cnu)
 	   sudo iw dev wlan0 disconnect
 	   sudo iw dev wlan0 connect CNU
-	   v2ray -c ~/scripts/config.json & ;;
+	   v2ray -c ~/scripts/config.json & 
+	   sleep 5
+	   qutebrowser http://192.168.1.91 ;;
     wpa-off)
 	   sudo pkill wpa_supplicant
 	   sudo pkill v2ray ;;
