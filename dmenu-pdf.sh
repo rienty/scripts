@@ -48,21 +48,18 @@ tp=$(echo $sel | sed 's/.*\.//')
 
 if [[ $tp == pdf || $tp == djvu ]]
 then
-#    if [ $barl == tabbed ]
-#    then
-	# if [ -z $n1 ]
-        # then
-#	   tabbed -c zathura "$path" -e &
-    #     else
-    # 	   open_file
-    # 	   xdotool windowreparent $n2 $n1
-    #     fi
-    # else
-    # 	zathura "$path" &
-#    fi
-   bspc desktop -f $nu 
-   zathura $path
-   
+   	bspc desktop -f $nu
+	layout=$(bspc query -T -d | jq -r .layout)
+	if [ "$layout" = "monocle" ]; then
+ 		bspc config top_padding 0
+		pkill lemonbar
+    	~/scripts/lemonbar.sh | lemonbar -g 2560x43+0+0 -f 'GohuFont Nerd Font Mono:size=18' -B '#282828' &
+	else
+    	bspc config top_padding 55
+    	pkill lemonbar
+		~/scripts/lemonbar.sh | lemonbar -g 2536x43+12+12 -f 'GohuFont Nerd Font Mono:size=18' -B '#282828' &
+	fi
+   	zathura $path
 fi
 exit 0
 

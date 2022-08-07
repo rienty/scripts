@@ -6,10 +6,28 @@
 # Within that line, the first and ninth numbers after ':' are respectively the received and transmited bytes.
 
 
+print_volume(){
+    volume="$(amixer -c 1 get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+    status="$(amixer -c 1 get Master | tail -n1 | awk '{print $6}')"
+      if [ "$volume" -gt 0 ] && [ "$status" == "[on]" ]
+      then
+         echo -e "${volume}%"
+      else
+         echo -e "M"
+      fi
+}
+
+
+print_backlight() {
+    light="$(xbacklight | grep -Eo "^.*\.")"
+    echo "scale=0; ${light}" | bc
+}
 
 print_disk() {
-  disk=$(lsblk -f | grep sda4 | awk '{print $5}')
-  echo -e "$disk"
+    disk1=$(lsblk -f | grep sda1 | awk '{print $5}' | sed -r 's/G$//')
+    disk0=$(lsblk -f | grep sda5 | awk '{print $5}' | sed -r 's/G$//')
+    echo -e "${disk0}G/${disk1}G"
+#    echo -e "${disk1}G"
 }
 
 print_mem(){
@@ -24,8 +42,24 @@ print_bat(){
 }
 
 print_date(){
-   date=$(date '+%H:%M')
+   date=$(date '+%Y-%m-%d')
    echo "$date"
+}
+
+print_time(){
+	time=$(date '+%H:%M')
+	echo "$time"
+}
+
+
+print_wifi() {
+	wifi=$(iw dev wlan0 info | grep ssid | awk '{print $2}')
+	if [ -z "$wifi" ]
+	then
+		echo -e "H"
+	else
+		echo -e "W"
+	fi
 }
 
 print_cpuinfo(){
@@ -59,16 +93,5 @@ print_cpuinfo(){
       echo -e "${zg}GHz +$tep$co"
 }
 
-print_wifi() {
-	wifi=$(iw dev wlan0 info | grep ssid | awk '{print $2}')
-	if [ -z "$wifi" ]
-	then
-		echo -e "H"
-	else
-		echo -e "W"
-	fi
-}
+echo -e " $(print_mem)  $(print_cpuinfo)  $(print_disk) " 
 
-echo -e " $(print_wifi)  $(print_date)  $(print_bat) "
-
-exit 0
