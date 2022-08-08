@@ -26,7 +26,7 @@ fi
 
 
 #sel=$(find ~/Documents -maxdepth 20 -type f | grep -Eo "Documents*.pdf" | dmenu -i -p Books: -l 23 -fn "Agave Nerd Font:size=16" $colors1  )
-sel=$(find ~/documents -maxdepth 20 -type f | sed -r 's/\/.*\///'| dmenu -i -p 'PDF' -x 200 -y 350 -z 2125 -l 23 )
+sel=$(find ~/documents -maxdepth 20 -type f | sed -r 's/\/.*\///'| dmenu -i -p 'PDF' -x 220 -y 350 -z 2120 -l 23 )
 path=$(find ~/documents -maxdepth 20 -type f | grep $sel)
 
 if [ -z "$sel" ]

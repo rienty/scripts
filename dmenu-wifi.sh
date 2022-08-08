@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sel=$(echo -e "oneplus\ncnu\nhome\nwpa-off\niw-off" | dmenu -i -p "Which WiFi to be connected?" -l 20 -x 200 -y 1000 -z 2125)
+sel=$(echo -e "oneplus\ncnu\nhome\nwpa-off\niw-off" | dmenu -i -p "Which WiFi to be connected?" -l 20 -x 220 -y 1000 -z 2120)
 
 if [ -z "$sel" ]
 then

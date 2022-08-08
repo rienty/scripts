@@ -30,7 +30,7 @@ web="qutebrowser"
 
 nu="^4"
 
-engine="$(echo -e "Google\nArXiv\nWiki\nScihub\nZbmath\nOverflow\nGithub\nYoutube\nCNU\nURL" | dmenu -p "Which Engine?" -l 20 -i -x 200 -y 800 -z 2100)"
+engine="$(echo -e "Google\nArXiv\nWiki\nScihub\nZbmath\nOverflow\nGithub\nYoutube\nCNU\nURL" | dmenu -p "Which Engine?" -l 20 -i -x 220 -y 800 -z 2120)"
 
 exit_justify "$engine"
 
@@ -38,7 +38,7 @@ exit_justify "$engine"
 case "$engine" in
 
 	Google)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f ${nu}
@@ -54,15 +54,15 @@ case "$engine" in
 		$web https://duckduckgo.com/?q=$text&ia=web ;;
 
 	ArXiv)
-	do="$(echo -e "Search\nList" | dmenu -p "What do you want to do?" -i -l 3 -x 200 -y 1100 -z 2125)"
+	do="$(echo -e "Search\nList" | dmenu -p "What do you want to do?" -i -l 3 -x 220 -y 1100 -z 2120)"
 		case "$do" in
 			Search)
 				type="$(echo -e "all\ntitle\nauthor\nabstract\ncomments" | dmenu -p "Type|" -i -l 10 -x 200 -y 1000 -z 2125)"
-				txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1000 -z 2125)"
+				txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1000 -z 2120)"
 				exit_justify "$txt"
 				if [ $type == "author" ]
 				then
-					where="$(echo -e "Chinese\nOthers" | dmenu -p "Where|" -i -l 3 -x 200 -y 1000 -z 2125)"
+					where="$(echo -e "Chinese\nOthers" | dmenu -p "Where|" -i -l 3 -x 220 -y 1000 -z 2120)"
 					if [ $where == Chinese ]
 					then
 						text="$(echo -e $txt | sed -r 's/[[:space:]]+/,/g' )"
@@ -76,7 +76,7 @@ case "$engine" in
 		bspc desktop -f $nu
 				$web $result ;;
 			List)
-				type="$(echo -e "math.DG\nmath.MG" | dmenu -p "Field|" -i -l 4 -x 200 -y 1000 -z 2125)"
+				type="$(echo -e "math.DG\nmath.MG" | dmenu -p "Field|" -i -l 4 -x 220 -y 1000 -z 2120)"
 				result="https://arxiv.org/list/$type/recent"
 		bspc desktop -f $nu
 		lay_out
@@ -84,14 +84,14 @@ case "$engine" in
 		esac ;;
 
 	Wiki)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		bspc desktop -f $nu
 		lay_out
 		$web https://en.wikipedia.org/wiki/"$txt" ;;
 
 	Scihub)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/,/g' )"
 		bspc desktop -f $nu
@@ -99,7 +99,7 @@ case "$engine" in
 		$web https://sci-hub.se/"$text" ;;
 
 	Zbmath)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/,/g' )"
 		bspc desktop -f $nu
@@ -108,7 +108,7 @@ case "$engine" in
 
 
 	Github)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
@@ -116,7 +116,7 @@ case "$engine" in
 		$web https://github.com/search/?q=$text ;;
 
 	Youtube)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
@@ -124,7 +124,7 @@ case "$engine" in
 		$web https://youtube.com/search?q=$text ;;
 
 	Overflow)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
@@ -132,7 +132,7 @@ case "$engine" in
 		$web https://mathoverflow.com/search?q=$text ;;
 
 	Nyaa)
-		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
@@ -140,7 +140,7 @@ case "$engine" in
 		$web https://nyaa.si/?f=0&c=0_0&q="$text" ;;
 
 	URL)
-		txt="$(echo -e "" | dmenu -p "What do you want to go?" -i -x 200 -y 1200 -z 2125)"
+		txt="$(echo -e "" | dmenu -p "What do you want to go?" -i -x 220 -y 1200 -z 2120)"
 		bspc desktop -f $nu
 		lay_out
 		$web https://$txt ;;
