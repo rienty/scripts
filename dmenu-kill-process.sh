@@ -11,7 +11,7 @@ selected="$(ps ax | \
 if [[ ! -z $selected ]]; then
 
 	answer="$(echo -e "Yes\nNo" | \
-		dmenu -i -p "$selected will be killed, are you sure?" -x 220 -y 220 -z 2120 \
+		dmenu -i -p "$selected will be killed, are you sure?" -x 220 -y 620 -z 2120 \
 		$lines)"
 
 	if [[ $answer == "Yes" ]]; then

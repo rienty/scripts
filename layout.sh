@@ -1,5 +1,4 @@
 #!/bin/sh
-
 layout=$(bspc query -T -d | jq -r .layout)
 if [ "$layout" = "monocle" ]; then
     
@@ -11,3 +10,4 @@ else
     pkill lemonbar
 	~/scripts/lemonbar.sh | lemonbar -g 2536x43+12+12 -f 'Source Code Pro:size=18' -B '#282828' &
 fi
+

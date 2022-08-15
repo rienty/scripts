@@ -24,9 +24,23 @@ then
     exit 0
 fi
 
+lay_out () {
+layout=$(bspc query -T -d | jq -r .layout)
+if [ "$layout" = "monocle" ]; then
+    
+	bspc config top_padding 0
+	pkill lemonbar
+    ~/scripts/lemonbar.sh | lemonbar -g 2560x43+0+0 -f 'Source Code Pro:size=18' -B '#282828' &
+else
+    bspc config top_padding 55
+    pkill lemonbar
+	~/scripts/lemonbar.sh | lemonbar -g 2536x43+12+12 -f 'Source Code Pro:size=18' -B '#282828' &
+fi
+}
+
 
 #sel=$(find ~/Documents -maxdepth 20 -type f | grep -Eo "Documents*.pdf" | dmenu -i -p Books: -l 23 -fn "Agave Nerd Font:size=16" $colors1  )
-sel=$(find ~/documents -maxdepth 20 -type f | sed -r 's/\/.*\///'| dmenu -i -p 'PDF' -x 220 -y 350 -z 2120 -l 23 )
+sel=$(find ~/documents -maxdepth 20 -type f | sed -r 's/\/.*\///'| dmenu -i -x 220 -y 250 -z 2120 -l 23 )
 path=$(find ~/documents -maxdepth 20 -type f | grep $sel)
 
 if [ -z "$sel" ]
@@ -49,16 +63,7 @@ tp=$(echo $sel | sed 's/.*\.//')
 if [[ $tp == pdf || $tp == djvu ]]
 then
    	bspc desktop -f $nu
-	layout=$(bspc query -T -d | jq -r .layout)
-	if [ "$layout" = "monocle" ]; then
- 		bspc config top_padding 0
-		pkill lemonbar
-    	~/scripts/lemonbar.sh | lemonbar -g 2560x43+0+0 -f 'GohuFont Nerd Font Mono:size=18' -B '#282828' &
-	else
-    	bspc config top_padding 55
-    	pkill lemonbar
-		~/scripts/lemonbar.sh | lemonbar -g 2536x43+12+12 -f 'GohuFont Nerd Font Mono:size=18' -B '#282828' &
-	fi
+	lay_out
    	zathura $path
 fi
 exit 0
