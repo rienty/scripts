@@ -1,5 +1,15 @@
 #!/bin/bash
 
+print_layout(){
+layout=$(bspc query -T -d | jq -r .layout)
+case "$layout" in
+	monocle) echo -e "\uf00b"
+	;;
+	tiled) echo -e "\uf009"
+	;;
+esac
+}
+
 print_desktop(){
 mu=$(wmctrl -d | grep -E "\*" | awk '{print $9}')
 case "$mu" in
@@ -29,7 +39,7 @@ echo -e "$lu"
 print_bat(){
     pre=$(acpi -b | grep 'Battery\ 0' | awk '{print $4}' | grep -Eo "[0-9]+")
 	if [[ $pre -le 10 ]]; then
-		precent="\uf579"
+		precent="\uf582"
 	elif [[ $pre -le 20 ]]; then
 		precent="\uf57a"
 	elif [[ $pre -le 30 ]]; then
@@ -151,7 +161,7 @@ print_wifi(){
 
 while true; do
 	
-	echo -e "%{l} %{F-}%{B-}%{F#3c3836}%{B#ebdbb2}| $(print_desktop) |%{F-}%{B-}%{c}%{F#504549}%{B#689d6a}| $(print_date) $(print_time) |%{F-}%{B-}  %{r}%{F#3c3836}%{B#b8bb26}| $(print_bat)  $(print_volume)  $(print_wifi) |%{F-}%{B-} "
+	echo -e "%{l} %{F-}%{B-}%{F#3c3836}%{B#458588}| $(print_layout) |%{F-}%{B-} %{F-}%{B-}%{F#3c3836}%{B#7c6f64}| $(print_desktop) |%{F-}%{B-}%{c}%{F#504549}%{B#689d6a}| $(print_date) $(print_time) |%{F-}%{B-}  %{r}%{F#3c3836}%{B#b8bb26}| $(print_bat)  $(print_volume)  $(print_wifi) |%{F-}%{B-} "
 sleep 1
 done
 exit 0

@@ -6,19 +6,19 @@ exit_justify () {
 	fi
 }
 
-lay_out () {
-layout=$(bspc query -T -d | jq -r .layout)
-if [ "$layout" = "monocle" ]; then
-    
-	bspc config top_padding 0
-	pkill lemonbar
-    ~/scripts/lemonbar.sh | lemonbar -g 2560x43+0+0 -f 'TerminessTTF Nerd Font:size=20' -B '#282828' &
-else
-    bspc config top_padding 55
-    pkill lemonbar
-	~/scripts/lemonbar.sh | lemonbar -g 2536x43+12+12 -f 'TerminessTTF Nerd Font:size=20' -B '#282828' &
-fi
-}
+#lay_out () {
+#layout=$(bspc query -T -d | jq -r .layout)
+#if [ "$layout" = "monocle" ]; then
+#    
+#	bspc config top_padding 0
+#	pkill lemonbar
+#    ~/scripts/lemonbar.sh | lemonbar -g 2560x43+0+0 -f 'TerminessTTF Nerd Font:size=20' -B '#282828' &
+#else
+#    bspc config top_padding 55
+#    pkill lemonbar
+#	~/scripts/lemonbar.sh | lemonbar -g 2536x43+12+12 -f 'TerminessTTF Nerd Font:size=20' -B '#282828' &
+#fi
+#}
 
 #web="$(echo -e "qutebrowser\nfirefox" | dmenu -p "Which Browser?" -l 20 -i)"
 #exit_justify "$web"
@@ -42,7 +42,7 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f ${nu}
-		lay_out
+#		lay_out
 		$web https://www.google.com/search?q=$text ;;
 
 	DuckDuckgo)
@@ -50,7 +50,7 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
-		lay_out
+#		lay_out
 		$web https://duckduckgo.com/?q=$text&ia=web ;;
 
 	ArXiv)
@@ -79,7 +79,7 @@ case "$engine" in
 				type="$(echo -e "math.DG\nmath.MG" | dmenu -p "Field|" -i -l 4 -x 220 -y 1000 -z 2120)"
 				result="https://arxiv.org/list/$type/recent"
 		bspc desktop -f $nu
-		lay_out
+#		lay_out
 				$web $result ;;
 		esac ;;
 
@@ -87,7 +87,7 @@ case "$engine" in
 		txt="$(echo -e " " | dmenu -p "What you want to know?" -i -x 220 -y 1200 -z 2120)"
 		exit_justify "$txt"
 		bspc desktop -f $nu
-		lay_out
+#		lay_out
 		$web https://en.wikipedia.org/wiki/"$txt" ;;
 
 	Scihub)
@@ -95,7 +95,7 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/,/g' )"
 		bspc desktop -f $nu
-		lay_out
+		#lay_out
 		$web https://sci-hub.se/"$text" ;;
 
 	Zbmath)
@@ -103,7 +103,7 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/,/g' )"
 		bspc desktop -f $nu
-		lay_out
+		#lay_out
 		$web https://zbmath.org/?q="$txt" ;;
 
 
@@ -112,7 +112,7 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
-		lay_out
+		#lay_out
 		$web https://github.com/search/?q=$text ;;
 
 	Youtube)
@@ -120,7 +120,7 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
-		lay_out
+		#lay_out
 		$web https://youtube.com/search?q=$text ;;
 
 	Overflow)
@@ -128,7 +128,7 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
-		lay_out
+		#lay_out
 		$web https://mathoverflow.com/search?q=$text ;;
 
 	Nyaa)
@@ -136,17 +136,17 @@ case "$engine" in
 		exit_justify "$txt"
 		text="$(echo -e $txt | sed -r 's/[[:space:]]+/+/g' )"
 		bspc desktop -f $nu
-		lay_out
+		#lay_out
 		$web https://nyaa.si/?f=0&c=0_0&q="$text" ;;
 
 	URL)
 		txt="$(echo -e "" | dmenu -p "What do you want to go?" -i -x 220 -y 1200 -z 2120)"
 		bspc desktop -f $nu
-		lay_out
+#		lay_out
 		$web https://$txt ;;
 	CNU)
 		bspc desktop -f $nu
-		lay_out
+#		lay_out
 		$web 192.168.1.91 ;;
 esac
 
